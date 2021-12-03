@@ -1,22 +1,7 @@
 from turtle import Turtle
-from random import randint
 
-start_point = [(0, 0), (-20, 0), (-40, 0), (-60, 0)]
-segment_between_space = 15
-UP = 90
-DOWN = 270
-RIGHT = 0
-LEFT = 180
-SPEED = 0
-PIXEL = 10
 ALIGNMENT = "center"
 FONT = ('Arial', 20, 'normal')
-
-
-
-
-
-
 
 
 class Scoreboard(Turtle):
@@ -54,7 +39,11 @@ class Scoreboard(Turtle):
         self.score = 0
         self.scoreboard_body(coordinate=self.scoreboard_coordinates)
 
-    def game_over(self, text="GameOver!", alignment="center", font=('Arial', 20, 'normal')):
+    def game_over(self, text="GameOver!",
+                  alignment="center",
+                  font=('Arial', 20, 'normal')):
         """GameOver Message"""
         self.home()
         self.write(arg=text, align=alignment, font=font)
+
+
