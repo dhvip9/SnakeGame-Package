@@ -17,28 +17,33 @@ class Snake:
         self.snake_body()
         self.head = self.snake_segment[0]
         self.head.shape("triangle")
-        self.tail = []
+        self.tail = self.snake_segment[2:]
 
     def snake_body(self):
         """Return Snake Segment object"""
         for pos in start_point:
-            self.add_segment(pos)
+            self.add_segment(pos, shape="square", color="black")
 
-    def add_segment(self, position):
-        """add segment"""
-        snakes = turtle.Turtle("square")
-        snakes.color("red")
-        snakes.turtlesize(stretch_len=0.5, stretch_wid=0.5)
+    def add_segment(self, position,
+                    shape=None,
+                    color=None,
+                    length=0.5,
+                    width=0.5):
+        """Add segment"""
+        snakes = turtle.Turtle(shape=shape)
+        snakes.color(color)
+        snakes.turtlesize(stretch_len=length, stretch_wid=width)
         snakes.penup()
         snakes.goto(position)
         self.snake_segment.append(snakes)
 
     def extend(self):
-        """ADD Segment"""
+        """ADD Segment at Last Segment Position"""
         self.add_segment(self.snake_segment[-1].position())
 
     def move(self):
-        """Return Movement of Snake"""
+        """Return Snake Head Position and
+           Move Snake Forward"""
         for seg_num in range(len(self.snake_segment) - 1, 0, -1):
             x_coordinate = self.snake_segment[seg_num - 1].xcor()
             y_coordinate = self.snake_segment[seg_num - 1].ycor()
@@ -52,7 +57,7 @@ class Snake:
             self.head.setheading(RIGHT)
 
     def up(self):
-        """Move Snake Left"""
+        """Move Snake Up"""
         if self.head.heading() != DOWN:
             self.head.setheading(UP)
 
@@ -62,7 +67,7 @@ class Snake:
             self.head.setheading(LEFT)
 
     def down(self):
-        """Move Snake Left"""
+        """Move Snake Down"""
         if self.head.heading() != UP:
             self.head.setheading(DOWN)
 
@@ -73,9 +78,14 @@ class Snake:
         self.__init__()
 
     @staticmethod
-    def snake_boundary(position):
+    def snake_boundary(head_position,
+                       x_positive=300,
+                       x_negative=-300,
+                       y_positive=300,
+                       y_negative=-300):
         """Return Bool value"""
-        if position[0] > 290 or position[0] < -290 or position[1] > 280 or position[1] < -290:
+        if head_position[0] > x_positive or head_position[0] < x_negative or head_position[1] > y_positive \
+                or head_position[1] < y_negative:
             return False
         else:
             return True
