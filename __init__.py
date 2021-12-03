@@ -25,11 +25,11 @@ class Snake:
     def snake_body(self):
         """Return Snake Segment object"""
         for pos in start_point:
-            self.add_segment(pos, shape="square", color="black")
+            self.add_segment(pos)
 
     def add_segment(self, position,
-                    shape=None,
-                    color=None,
+                    shape="square",
+                    color="black",
                     length=0.5,
                     width=0.5):
         """Add segment"""
@@ -166,7 +166,7 @@ class Scoreboard(Turtle):
         self.score = 0
         self.scoreboard_body(coordinate=self.scoreboard_coordinates)
 
-    def game_over(self):
+    def game_over(self, text="GameOver!", alignment="center", font=('Arial', 20, 'normal')):
         """GameOver Message"""
         self.home()
-        self.write(arg="GameOver!", align=ALIGNMENT, font=FONT)
+        self.write(arg=text, align=alignment, font=font)
