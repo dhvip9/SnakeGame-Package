@@ -12,7 +12,7 @@ class Scoreboard(Turtle):
         self.color("white")
         self.penup()
         self.score = 0
-        with open("../data.txt") as data:
+        with open("data.txt") as data:
             self.high_score = int(data.read())
         self.scoreboard_coordinates = (0.00, 270)
         self.scoreboard_body(coordinate=self.scoreboard_coordinates)
@@ -34,7 +34,7 @@ class Scoreboard(Turtle):
         """Reset ScoreBoard"""
         if self.score > self.high_score:
             self.high_score = self.score
-            with open("../data.txt", mode="w") as data:
+            with open("data.txt", mode="w") as data:
                 data.write(f"{self.high_score}")
         self.score = 0
         self.scoreboard_body(coordinate=self.scoreboard_coordinates)
